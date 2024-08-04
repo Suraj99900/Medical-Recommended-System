@@ -73,6 +73,11 @@ def helper(sPredictedDisease):
 
     sPrecaution = precaution[precaution['Disease'] == sPredictedDisease][['Precaution_1','Precaution_2','Precaution_3','Precaution_4']]
     sPrecaution = sPrecaution.values.tolist()  # Convert to list of lists
+    aListPre = []
+    for x in sPrecaution[0]:
+        if(type(x) != float):
+            aListPre.append(x)
+            
 
     sMedication = medication[medication['Disease'] == sPredictedDisease]['Medication']
     sMedication = sMedication.values.tolist()  # Convert to list
@@ -86,7 +91,7 @@ def helper(sPredictedDisease):
     aFinalData = {
         "Disease" : sPredictedDisease,
         "Description" : sDescr,
-        "Precaution" : sPrecaution,
+        "Precaution" : aListPre,
         "Medication" : sMedication,
         "Diet" : sDiets,
         "Workout" : sWorkout
