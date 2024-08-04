@@ -45,6 +45,19 @@ def predectWithSVCModel(patientSymptoms):
         return str(ve)
     except Exception as e:
         return f"An error occurred: {str(e)}"
+    
+def predectWithDiabetes(aUserData):
+    #load the model
+    oModel = pickle.load(open("model/RandomForestDiabetes.pkl","rb"))
+    oPredectedValue = oModel.predict(aUserData)
+    
+    return oPredectedValue
+
+def predectWithHypertension(aUserData):
+    #load the model
+    oModel = pickle.load(open("model/RandomForestHypertension.pkl","rb"))
+    oPredectedValue = oModel.predict(aUserData)
+    return oPredectedValue
 
 decodedDiseasesDict = {15: 'Fungal infection', 4: 'Allergy', 16: 'GERD', 9: 'Chronic cholestasis', 14: 'Drug Reaction', 33: 'Peptic ulcer diseae', 1: 'AIDS', 12: 'Diabetes ', 17: 'Gastroenteritis', 6: 'Bronchial Asthma', 23: 'Hypertension ', 30: 'Migraine', 7: 'Cervical spondylosis', 32: 'Paralysis (brain hemorrhage)', 28: 'Jaundice', 29: 'Malaria', 8: 'Chicken pox', 11: 'Dengue', 37: 'Typhoid', 40: 'hepatitis A', 19: 'Hepatitis B', 20: 'Hepatitis C', 21: 'Hepatitis D', 22: 'Hepatitis E', 3: 'Alcoholic hepatitis', 36: 'Tuberculosis', 10: 'Common Cold', 34: 'Pneumonia', 13: 'Dimorphic hemmorhoids(piles)', 18: 'Heart attack', 39: 'Varicose veins', 26: 'Hypothyroidism', 24: 'Hyperthyroidism', 25: 'Hypoglycemia', 31: 'Osteoarthristis', 5: 'Arthritis', 0: '(vertigo) Paroymsal  Positional Vertigo', 2: 'Acne', 38: 'Urinary tract infection', 35: 'Psoriasis', 27: 'Impetigo'}
 
@@ -104,3 +117,45 @@ def predict():
             return jsonify({"error": "No symptoms provided"}), 400
     return jsonify({"error": "Request must be JSON"}), 415
 
+
+
+@user_bp.route('/api/checkDiabetes',methods=['POST'])
+def checkDiabetes():
+    if request.is_json:
+        data = request.get_json()
+        iFBS = data.get('fbs')
+        iRBS = data.get('rbs')
+        iPPBS = data.get('ppbs')
+        iHBA1C = data.get('hba1c')
+        iBloodSugarTypePpbs = data.get('bloodSugarTypePpbs')
+        iBloodSugarTypeRbs = data.get('bloodSugarTypeRbs')
+        iWeight = data.get('Weight')
+        if iFBS or iRBS or iPPBS:
+            sPredictedDisease = predectWithDiabetes([[iFBS, iPPBS, iRBS, iHBA1C, iBloodSugarTypePpbs, iBloodSugarTypeRbs, iWeight]])
+            aReturnDiabetes = [{
+                'Diabetes': sPredictedDisease[0].item(),  # Convert to native Python type
+                'isUserHaveDiabetes': ("User is Positive for diabetes" if bool(sPredictedDisease) else "User is Nagative for diabetes")
+            }]
+            return jsonify(aReturnDiabetes)
+        else:
+            return jsonify({"error": "FBS, RBS, and PPBS any one are required"}), 400
+    return jsonify({"error": "Request must be JSON"}), 415
+
+
+@user_bp.route('/api/checkHyperTension',methods=['POST'])
+def checkHypertension():
+    if request.is_json:
+        data = request.get_json()
+        iSBP = data.get('sbp')
+        iDBP = data.get('dbp')
+        
+        if iSBP and iDBP:
+            sPredictedDisease = predectWithHypertension([[iSBP,iDBP]])
+            aReturnDiabetes = [{
+                'Hypertension': sPredictedDisease[0].item(),  # Convert to native Python type
+                'isUserHaveHypertension': ("User is Positive for Hypertension" if bool(sPredictedDisease) else "User is Nagative for Hypertension")
+            }]
+            return jsonify(aReturnDiabetes)
+        else:
+            return jsonify({"error": "SBP and DBP any one are required"}), 400
+    return jsonify({"error": "Request must be JSON"}), 415
