@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from route.user import user_bp  # Import the user blueprint
+from route.buzzer import user_bp
 
 app = Flask(__name__)
 

@@ -1,0 +1,164 @@
+{% include 'header.html' %}
+<style>
+    .startDetection {
+        width: 20rem;
+        width: 19rem;
+        padding: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .fa-cust {
+        font-size: 2.5rem;
+        padding: 0.7rem;
+        color: var(--skin-color);
+    }
+</style>
+<div class="main-container">
+
+    <!-- aside start  -->
+    <div class="aside">
+        <div class="logo">
+            <a href="#" style="font-size: 14px;"><span>D</span>System</a>
+        </div>
+
+        <div class="nav-toggler">
+            <span></span>
+        </div>
+
+        <ul class="nav">
+            <li><a href="home" class=""><i class="fa fa-home"></i>Home</a></li>
+
+            <li><a href="facts" class=""><i class="fa fa-regular fa-circle-user"></i> Facts</a></li>
+            <li><a href="about" class=""><i class="fa-regular fa-circle-user"></i> About</a></li>
+        </ul>
+    </div>
+
+
+    <!-- main Content start -->
+    <div class="main-content">
+
+
+        <section class="section" id="upload">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb pt-4">
+                    <li class="breadcrumb-item active" aria-current="page"> Facts</li>
+                </ol>
+            </nav>
+
+            <div class="container">
+
+                <!-- upload Section form  start-->
+                <div class="row">
+                    <div class="section-title padd-15">
+                        <h2>Facts</h2>
+                    </div>
+                </div>
+
+                <div class="upload-btn-section shadow-lg p-lg-5 p-sm-5 p-md-5 mb-5 rounded flex"
+                    style="position: relative;">
+                    <div class="card bg-card-high">
+                        <div class="fact-box card m-3">
+                            <div class="row text-center">
+                                <i class="fa-solid fa-thumbtack fa-cust"></i>
+                            </div>
+                            <div class="row p-lg-3 p-5">
+                                <p class="text-center">
+                                    Most drivers understand the dangers of drinking and driving and texting and driving,
+                                    but many people underestimate the dangers of drowsy driving. Each year, drowsy
+                                    driving accounts for about 100,000 crashes, 71,000 injuries and 1,550 fatalities,
+                                    according to the National Safety Council (NSC).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="fact-box card m-3">
+                            <div class="row text-center">
+                                <i class="fa-solid fa-thumbtack fa-cust"></i>
+                            </div>
+                            <div class="row p-lg-3 p-5">
+                                <p class="text-center">
+                                    A few hours’ sleep might not be enough to make you alert and rested enough to drive.
+                                    The NSF states that someone who only slept three to five hours the night before is
+                                    not fit to operate a motor vehicle.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="fact-box card m-3">
+                            <div class="row text-center">
+                                <i class="fa-solid fa-thumbtack fa-cust"></i>
+                            </div>
+                            <div class="row p-lg-3 p-5">
+                                <p class="text-center">
+                                    Drowsiness-related accidents often occur during the early hours of the morning or
+                                    late at night when the body's circadian rhythm naturally promotes sleep.
+                                    Additionally, driving after a long day of work or when sleep-deprived further
+                                    exacerbates the risk of drowsy driving incidents.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="fact-box card m-3">
+                            <div class="row text-center">
+                                <i class="fa-solid fa-thumbtack fa-cust"></i>
+                            </div>
+                            <div class="row p-lg-3 p-5">
+                                <p class="text-center">
+                                    india rank 1st in the number of road accident deaths across the 199 countries
+                                    reported in the world road statistics . 2018 followed by china and US . As per the
+                                    WHO Global Report on Road safety 2018 india account for almost 11% of the accident
+                                    related death in the world
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </section>
+    </div>
+
+</div>
+
+
+
+<!-- style switcher start -->
+<div class="style-switcher">
+    <div class="style-switcher-toggler s-icon">
+        <i class="fas fa-cog fa-spin"></i>
+    </div>
+    <div class="day-night s-icon">
+        <i class="fas "></i>
+    </div>
+    <h4>Theme Color</h4>
+    <div class="colors">
+        <span class="color-1" onclick="setActivityStyle('color-1')"></span>
+        <span class="color-2" onclick="setActivityStyle('color-2')"></span>
+        <span class="color-3" onclick="setActivityStyle('color-3')"></span>
+        <span class="color-4" onclick="setActivityStyle('color-4')"></span>
+        <span class="color-5" onclick="setActivityStyle('color-5')"></span>
+    </div>
+</div>
+
+<!-- style switcher end -->
+<!-- manu toggler start -->
+
+<div class="toggler-box">
+    <div class="toggler-open icon">
+        <i class="uil uil-angle-right-b"></i>
+    </div>
+    <div class="toggler-close icon">
+        <i class="uil uil-angle-left-b"></i>
+    </div>
+</div>
+
+<!-- manu toggler end -->
+
+<script>
+    setInterval(() => {
+        typeing()
+    }, 150);
+</script>
+
+{% include 'footer.html' %}

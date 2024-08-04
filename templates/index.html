@@ -1,0 +1,27 @@
+{% include 'header.html' %}
+
+<div class="main-container">
+
+    <!-- main Content start -->
+    <div class="dashboard">
+
+        <section class="section" id="upload" style="padding: 0;">
+
+            <!-- Video Splash Screen -->
+            <div id="video-container" class="video-container">
+                <video autoplay muted loop id="video-bg">
+                    <source src="{{ url_for('static', filename='video_landpage.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+    </div>
+</div>
+<script>
+    // After 2 minutes, redirect to another page
+    setTimeout(function () {
+        window.location.href = "/home"; // Change "/your_page" to the desired URL
+    }, 8000); // 8000 milliseconds = 2 minutes
+</script>
+{% include 'footer.html' %}

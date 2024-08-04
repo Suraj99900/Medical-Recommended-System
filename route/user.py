@@ -96,11 +96,6 @@ def helper(sPredictedDisease):
 
 
 
-# Route for user login
-@user_bp.route('/')
-def index():
-    return redirect("https://smartpoly.lifehealerkavita.com/")
-
 @user_bp.route('/api/predict', methods=['POST'])
 def predict():
     if request.is_json:
